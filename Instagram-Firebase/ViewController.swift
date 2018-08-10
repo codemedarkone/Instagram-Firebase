@@ -131,23 +131,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let uid = user?.uid {
                 print("created a User!", uid)
                 
+                guard let image = self.plusPhotoButton.imageView?.image else { return }
+                
+                guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else { return }
+                
+                let fileName = UUID().uuidString
+                Storage.storage().reference().child("profile_images").child(fileName).putData(uploadData, metadata: nil, completion: { (metadata, error) in
+
+                    if let error = error {
+                        print("failed to upload profile image:", error)
+                        return
+                    }
+
+                    print("Successfully uploaded profile image")
+                   
+
+                })
+                
+                
                 let usernameValues = ["username" : username]
                 let values = [uid : usernameValues]
                 
                 Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
-                    
+
                     if error != nil {
                         print("Failed to save user info to the database:", error)
                         return
                     }
-                    
+
                     print("Successfully saved user info to database")
-                    
+
                 })
             }
         }
         
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
