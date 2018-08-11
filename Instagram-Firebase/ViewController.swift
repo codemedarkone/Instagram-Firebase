@@ -153,11 +153,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         else {
                             
                             guard let url = url else { return }
-                            let downloadUrl = url.absoluteString
-                            print(downloadUrl)
+                            let profileUrl = url.absoluteString
+                            print(profileUrl)
                             
-                            let usernameValues = ["username" : username, "downloadUrl": downloadUrl]
-                            let values = [uid : usernameValues]
+                            let dictionaryValues = ["username" : username, "profileUrl": profileUrl]
+                            let values = [uid : dictionaryValues]
                             
                             Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
                                 
