@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		834BB7D9211971B90072069F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BB7D8211971B90072069F /* AppDelegate.swift */; };
-		834BB7DB211971B90072069F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BB7DA211971B90072069F /* ViewController.swift */; };
+		834BB7DB211971B90072069F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BB7DA211971B90072069F /* SignUpController.swift */; };
 		834BB7DE211971B90072069F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834BB7DC211971B90072069F /* Main.storyboard */; };
 		834BB7E0211971BA0072069F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 834BB7DF211971BA0072069F /* Assets.xcassets */; };
 		834BB7E3211971BA0072069F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834BB7E1211971BA0072069F /* LaunchScreen.storyboard */; };
@@ -25,7 +25,7 @@
 		0426062A229542476B4E730E /* Pods-Instagram-Firebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram-Firebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram-Firebase/Pods-Instagram-Firebase.release.xcconfig"; sourceTree = "<group>"; };
 		834BB7D5211971B90072069F /* Instagram-Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-Firebase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		834BB7D8211971B90072069F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		834BB7DA211971B90072069F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		834BB7DA211971B90072069F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		834BB7DD211971B90072069F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		834BB7DF211971BA0072069F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		834BB7E2211971BA0072069F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 				834BB7F6211F9F950072069F /* UserProfile */,
 				834BB7EA211A78030072069F /* Utils */,
 				834BB7D8211971B90072069F /* AppDelegate.swift */,
-				834BB7DA211971B90072069F /* ViewController.swift */,
 				834BB7F1211F93780072069F /* MainTabBarController.swift */,
 				834BB7DC211971B90072069F /* Main.storyboard */,
 				834BB7DF211971BA0072069F /* Assets.xcassets */,
@@ -117,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				834BB7FB212249280072069F /* LoginController.swift */,
+				834BB7DA211971B90072069F /* SignUpController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834BB7DB211971B90072069F /* ViewController.swift in Sources */,
+				834BB7DB211971B90072069F /* SignUpController.swift in Sources */,
 				834BB7EC211A78110072069F /* Extensions.swift in Sources */,
 				834BB7F2211F93780072069F /* MainTabBarController.swift in Sources */,
 				834BB7F8211F9FB10072069F /* UserProfileHeader.swift in Sources */,

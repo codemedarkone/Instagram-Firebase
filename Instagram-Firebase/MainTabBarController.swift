@@ -20,7 +20,8 @@ class MainTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 
                 let loginController = LoginController()
-                self.present(loginController, animated: true, completion: nil)
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
             }
             return
         }
