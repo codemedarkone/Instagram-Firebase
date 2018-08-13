@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser == nil {
+            //show if not logged in
+            DispatchQueue.main.async {
+                
+                let loginController = LoginController()
+                self.present(loginController, animated: true, completion: nil)
+            }
+            return
+        }
         
         
         let layout = UICollectionViewFlowLayout()
