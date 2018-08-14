@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,12 @@ class MainTabBarController: UITabBarController {
             return
         }
         
+        setupViewControllers()
+        
+        
+    }
+    
+    func setupViewControllers() {
         
         let layout = UICollectionViewFlowLayout()
         
@@ -39,4 +46,5 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [navController, UIViewController()]
     }
+    
 }
