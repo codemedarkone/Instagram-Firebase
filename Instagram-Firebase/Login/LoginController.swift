@@ -64,9 +64,15 @@ class LoginController: UIViewController {
         return button
     }()
     
-    let signUpButton: UIButton = {
+    let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Dont have an account? Sign Up.", for: .normal)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        
+        attributedTitle.append(NSMutableAttributedString(string: "Sign Up", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)
+            ]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
         
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         
@@ -96,9 +102,9 @@ class LoginController: UIViewController {
         
         view.backgroundColor = .white
         
-        view.addSubview(signUpButton)
+        view.addSubview(dontHaveAccountButton)
         
-        signUpButton.anchor(top: nil, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        dontHaveAccountButton.anchor(top: nil, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         
         setupInputFields()
