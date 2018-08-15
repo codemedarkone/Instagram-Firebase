@@ -20,7 +20,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             
             let layout = UICollectionViewFlowLayout()
             let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
-            present(photoSelectorController, animated: true, completion: nil)
+            let navController = UINavigationController(rootViewController: photoSelectorController)
+            present(navController, animated: true, completion: nil)
             return false
         }
         
