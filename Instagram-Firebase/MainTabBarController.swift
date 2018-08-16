@@ -45,8 +45,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
         
         setupViewControllers()
-        
-        
+    
     }
     
     func setupViewControllers() {
