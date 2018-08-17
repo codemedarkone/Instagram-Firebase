@@ -34,15 +34,19 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         self.selectedImage = images[indexPath.item]
         self.collectionView?.reloadData()
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
     var selectedImage: UIImage?
     var images = [UIImage]()
+    //Header image
     var assets = [PHAsset]()
     
     fileprivate func fetchAssetOptions() -> PHFetchOptions {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 30
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortDescriptor]
         return fetchOptions
@@ -65,6 +69,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                         self.images.append(image)
                         self.assets.append(asset)
                         
+                        //make the supplementry header appear with a photo
                         if self.selectedImage == nil {
                             self.selectedImage = image
                         }
@@ -91,11 +96,15 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         return CGSize(width: width, height: width)
     }
     
+    var headerImage: PhotoSelectorHeader?
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.header, for: indexPath) as! PhotoSelectorHeader
         
-//        header.backgroundColor = .red
+        self.headerImage = header
+        
+        //header image
         header.photoImageView.image = selectedImage
         
         if let selectedImage = selectedImage {
@@ -109,10 +118,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                     header.photoImageView.image = image
                 }
             }
-        }
-        
-       
-        
+        } //End of header image
         return header
     }
     
@@ -158,7 +164,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     @objc func handleNext() {
         
-        print("handleNext")
+        let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = headerImage?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
     }
     
     @objc func handleCancel(){
