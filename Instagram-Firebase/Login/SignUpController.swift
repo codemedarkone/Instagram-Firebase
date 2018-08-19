@@ -234,7 +234,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         view.addSubview(stackView)
         
-//        ORIGINAL LAYOU CONSTRAINTS
+//        ORIGINAL LAYOUT CONSTRAINTS
 //        stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 40).isActive = true
 //        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:40).isActive = true
 //        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true

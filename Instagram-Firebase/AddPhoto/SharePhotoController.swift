@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class SharePhotoController: UIViewController {
     
@@ -56,8 +60,64 @@ class SharePhotoController: UIViewController {
     }
     
     @objc func handleShare() {
-        print("sharing Photo")
         
+        guard let caption = textView.text, !caption.isEmpty  else { return }
+        guard let image = selectedImage else { return }
+        guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else { return }
+
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let filename = UUID().uuidString
+        
+        let storageRef = Storage.storage().reference().child("posts").child(filename)
+        storageRef.putData(uploadData, metadata: nil) { (metadata, err) in
+            
+            if let err = err {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                
+                print("Failed to upload post image:", err)
+                return
+            }
+            
+            storageRef.downloadURL(completion: { (downloadURL, err) in
+                if let err = err {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    print("Failed to retrieve downloadURL:", err)
+                    return
+                }
+                guard let imageUrl = downloadURL?.absoluteString else { return }
+                
+                print("Successfully uploaded post image:", imageUrl)
+                
+                self.saveToDatabaseWIthImageUrl(imageUrl: imageUrl)
+                
+            })
+        }
+    }
+    
+    fileprivate func saveToDatabaseWIthImageUrl(imageUrl: String) {
+        guard let postImage = selectedImage else { return }
+        guard let caption = textView.text else { return }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        
+        let ref = userPostRef.childByAutoId()
+        
+        let values = ["imageUrl": imageUrl, "caption": caption, "imageWidth": postImage.size.width, "imageheight": postImage.size.height, "creationDate":NSTimeIntervalSince1970] as [String : Any]
+        
+        ref.updateChildValues(values) { (error, ref) in
+            
+            if let error = error {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed to save post to database", error)
+                return
+            }
+            
+            print("Successfully saved post to DB")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
