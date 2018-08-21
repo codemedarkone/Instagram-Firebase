@@ -30,7 +30,27 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         
         setupLogoutButton()
-        fetchPosts()
+//        fetchPosts()
+        fetchOrderedPosts()
+    }
+    
+    fileprivate func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        
+        //perhaps later on we we'll implement pagination
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dicionary = snapshot.value as? [String: Any] else { return }
+            
+            let post = Post(dictionary: dicionary)
+            self.posts.append(post)
+            
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("Failed to fetch ordered lists:", err)
+        }
     }
     
     var posts = [Post]()
