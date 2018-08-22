@@ -8,26 +8,31 @@
 
 import UIKit
 
+var imageCache = [String: UIImage]()
+
 class CustomImageView: UIImageView {
     
-    var lastUrlUsedToLoadImage: String?
+    var lastURLUsedToLoadImage: String?
     
     func loadImage(urlString: String) {
-        print("laoding image")
+        lastURLUsedToLoadImage = urlString
         
-        lastUrlUsedToLoadImage = urlString
+        self.image = nil
+        
+        if let cachedImage = imageCache[urlString] {
+            self.image = cachedImage
+            return
+        }
         
         guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let error = error {
-                print("failed to fetch the image:", error)
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            if let err = err {
+                print("Failed to fetch post image:", err)
                 return
             }
             
-//          //iamges load from incorrect urls----This prevents duplicate images on the cells
-            if url.absoluteString != self.lastUrlUsedToLoadImage  {
+            if url.absoluteString != self.lastURLUsedToLoadImage {
                 return
             }
             
@@ -35,9 +40,12 @@ class CustomImageView: UIImageView {
             
             let photoImage = UIImage(data: imageData)
             
+            imageCache[url.absoluteString] = photoImage
+            
             DispatchQueue.main.async {
                 self.image = photoImage
             }
+            
             }.resume()
     }
 }

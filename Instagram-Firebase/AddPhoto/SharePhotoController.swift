@@ -89,13 +89,13 @@ class SharePhotoController: UIViewController {
                 
                 print("Successfully uploaded post image:", imageUrl)
                 
-                self.saveToDatabaseWIthImageUrl(imageUrl: imageUrl)
+                self.saveToDatabaseWithImageUrl(imageUrl: imageUrl)
                 
             })
         }
     }
     
-    fileprivate func saveToDatabaseWIthImageUrl(imageUrl: String) {
+    fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         guard let postImage = selectedImage else { return }
         guard let caption = textView.text else { return }
         
@@ -105,7 +105,7 @@ class SharePhotoController: UIViewController {
         
         let ref = userPostRef.childByAutoId()
         
-        let values = ["imageUrl": imageUrl, "caption": caption, "imageWidth": postImage.size.width, "imageheight": postImage.size.height, "creationDate":NSTimeIntervalSince1970] as [String : Any]
+        let values = ["caption": caption, "imageWidth": postImage.size.width, "imageheight": postImage.size.height, "creationDate":NSTimeIntervalSince1970, "imageUrl": imageUrl] as [String : Any]
         
         ref.updateChildValues(values) { (error, ref) in
             
