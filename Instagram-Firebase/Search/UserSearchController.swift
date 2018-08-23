@@ -7,16 +7,35 @@
 //
 
 import UIKit
+import Firebase
 
-class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    let searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         sb.placeholder = "Username"
         sb.barTintColor = .gray
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
+        sb.delegate = self
         return sb
     }()
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        //be bale to search for users in search box, allows me to backspace and still see users
+        if searchText.isEmpty {
+            filteredUsers = users
+        } else {
+            
+            self.filteredUsers = self.users.filter { (user) -> Bool in
+                
+                return user.username.lowercased().contains(searchText.lowercased())
+            }
+        }
+        
+        self.collectionView?.reloadData()
+    }
     
     let cellId = "cellId"
     
@@ -34,15 +53,58 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView?.alwaysBounceVertical = true
+        
+        fetchUsers()
+    }
+    
+    //get a list of users witht his method for searchbar search
+    var filteredUsers = [User]()
+    var users = [User]()
+    fileprivate func fetchUsers() {
+        
+        let ref = Database.database().reference().child("users")
+        ref.observe(.value, with: { (snapshot) in
+//            print(snapshot.value)
+            //get the users for the search in searchBar
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach({ (key, value) in
+                
+//                print(key, value)
+                
+                guard let userDictionary = value as? [String: Any] else { return }
+                
+                let user = User(uid: key, dictionary: userDictionary)
+                self.users.append(user)
+                //view the uid as a key
+//                print(user.uid, user.username)
+            })
+            
+            //sort the users in the search bar search
+            self.users.sort(by: { (u1, u2) -> Bool in
+                
+                return u1.username.compare(u2.username) == .orderedAscending
+                
+            })
+            
+            //allow users to appear in searchbar when click it.
+            self.filteredUsers = self.users
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("failed to fetch users for search:", err)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return filteredUsers.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =
             collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
+        
+        cell.user = filteredUsers[indexPath.item]
         
         return cell
     }
