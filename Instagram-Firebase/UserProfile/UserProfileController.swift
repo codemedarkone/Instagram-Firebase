@@ -22,19 +22,18 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         
         collectionView?.backgroundColor = .white
-        fetchUser()
+        
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         
         setupLogOutButton()
-
-//        fetchOrderedPosts()
+        fetchUser()
     }
     
     var posts = [Post]()
     
     fileprivate func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = self.user?.uid else { return }
 
         let ref = Database.database().reference().child("posts").child(uid)
         
@@ -131,8 +130,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     var user: User?
     fileprivate func fetchUser() {
+        
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
 
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
 
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
