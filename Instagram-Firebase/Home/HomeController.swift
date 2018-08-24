@@ -18,14 +18,34 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //auto refresh, also go to share photo where its implemented
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+        
         collectionView?.backgroundColor = .white
         
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
+        
         setupNavigationItems()
         
-        fetchPosts()
+        fetchAllPosts()
+    }
+    //Auto refresh using notification
+    @objc func handleUpdateFeed() {
+        handleRefresh()
+    }
+    
+    @objc func handleRefresh() {
         
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
+        fetchPosts()
         fetchFollowingUserIds()
     }
     
@@ -35,6 +55,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            
+            self.collectionView?.refreshControl?.endRefreshing()
             
             userIdsDictionary.forEach({ (key, value) in
                 
@@ -53,6 +75,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
     }
+    
+    //IOS 9
+    //Let refresh control = UIRefreshControl()
     
     var posts = [Post]()
     fileprivate func fetchPosts() {
