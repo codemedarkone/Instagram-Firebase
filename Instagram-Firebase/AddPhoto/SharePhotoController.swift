@@ -105,7 +105,7 @@ class SharePhotoController: UIViewController {
         
         let ref = userPostRef.childByAutoId()
         
-        let values = ["caption": caption, "imageWidth": postImage.size.width, "imageheight": postImage.size.height, "creationDate":NSTimeIntervalSince1970, "imageUrl": imageUrl] as [String : Any]
+        let values = ["caption": caption, "imageWidth": postImage.size.width, "imageheight": postImage.size.height, "creationDate": Date().timeIntervalSince1970, "imageUrl": imageUrl] as [String : Any]
         
         ref.updateChildValues(values) { (error, ref) in
             

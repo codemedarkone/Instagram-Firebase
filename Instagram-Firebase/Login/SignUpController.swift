@@ -227,12 +227,13 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     private func setupInputFields() {
         
         let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signUpButton])
-        
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
         
         view.addSubview(stackView)
+        
+        stackView.anchor(top: plusPhotoButton.bottomAnchor, left: view.leadingAnchor, bottom: nil, right: view.trailingAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 200)
         
 //        ORIGINAL LAYOUT CONSTRAINTS
 //        stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 40).isActive = true
@@ -241,7 +242,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
 //        stackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         //NEW IMPROVED LAYOUT CONSTRAINTS
-        stackView.anchor(top: plusPhotoButton.bottomAnchor, left: view.leadingAnchor, bottom: nil, right: view.trailingAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: -40, width: 0, height: 200)
+        
        
     }
 
