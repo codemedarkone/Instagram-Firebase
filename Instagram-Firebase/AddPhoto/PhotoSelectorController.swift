@@ -51,7 +51,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         fetchOptions.sortDescriptors = [sortDescriptor]
         return fetchOptions
     }
-
+    
     fileprivate func fetchPhotos() {
         let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchAssetOptions())
         
@@ -147,7 +147,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PhotoSelectorCell
         cell.photoImageView.image = images[indexPath.item]
-//        cell.backgroundColor = .blue
+        //        cell.backgroundColor = .blue
         return cell
     }
     
@@ -172,6 +172,6 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     @objc func handleCancel(){
         
         dismiss(animated: true, completion: nil)
-//        presentingViewController?.dismiss(animated: true, completion: nil)
+        //        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

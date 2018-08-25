@@ -11,7 +11,7 @@ import AVFoundation
 
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-
+    
     
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
@@ -50,6 +50,10 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         dismissButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: view.trailingAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     @objc func handleCapturePhoto() {
         print("Capturing photo...")
         
@@ -63,15 +67,28 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         
-        if let imageData = photo.fileDataRepresentation() {
-            let previewImage = UIImage(data: imageData)
-            let previewImageView = UIImageView(image: previewImage)
-            view.addSubview(previewImageView)
-            previewImageView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        guard let imageData = photo.fileDataRepresentation() else {
+            print("no image detected")
+            return
         }
         
+        guard let previewImage = UIImage(data: imageData) else {
+            print("Couldnt get object from data")
+            return
+        }
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = previewImage
+        
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        //            let previewImageView = UIImageView(image: previewImage)
+        //            view.addSubview(previewImageView)
+        //            previewImageView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right:      view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        
         print("finished processing photo..")
-     
+        
     }
     
     ///////////////////////////
@@ -86,21 +103,21 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         do {
             
-        let input = try AVCaptureDeviceInput(device: captureDevice)
+            let input = try AVCaptureDeviceInput(device: captureDevice)
             if captureSession.canAddInput(input) {
-                 captureSession.addInput(input)
+                captureSession.addInput(input)
             }
         }
         catch let err{
             print("Could not setup camera input:", err)
         }
         
-
+        
         //2. setup outputs
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
-
+        
         
         //3. setup out preview
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)

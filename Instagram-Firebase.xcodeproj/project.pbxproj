@@ -26,6 +26,7 @@
 		83B4BB62212F63BC00427D6C /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4BB61212F63BC00427D6C /* UserSearchController.swift */; };
 		83B4BB64212F68C900427D6C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4BB63212F68C900427D6C /* UserSearchCell.swift */; };
 		83E4CB302130C37900D1AEA4 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CB2F2130C37900D1AEA4 /* CameraController.swift */; };
+		83E4CB322130EE4200D1AEA4 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CB312130EE4200D1AEA4 /* PreviewPhotoContainerView.swift */; };
 		83F49480212A30C3000FE0DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4947F212A30C3000FE0DF /* Post.swift */; };
 		83F49482212A3315000FE0DF /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F49481212A3315000FE0DF /* UserProfilePhotoCell.swift */; };
 		83F49484212CA503000FE0DF /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F49483212CA503000FE0DF /* CustomImageView.swift */; };
@@ -58,6 +59,7 @@
 		83B4BB61212F63BC00427D6C /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		83B4BB63212F68C900427D6C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		83E4CB2F2130C37900D1AEA4 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		83E4CB312130EE4200D1AEA4 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		83F4947F212A30C3000FE0DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		83F49481212A3315000FE0DF /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		83F49483212CA503000FE0DF /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				83E4CB2F2130C37900D1AEA4 /* CameraController.swift */,
+				83E4CB312130EE4200D1AEA4 /* PreviewPhotoContainerView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				834BB7F8211F9FB10072069F /* UserProfileHeader.swift in Sources */,
 				834BB7F4211F94AA0072069F /* UserProfileController.swift in Sources */,
 				834BB7D9211971B90072069F /* AppDelegate.swift in Sources */,
+				83E4CB322130EE4200D1AEA4 /* PreviewPhotoContainerView.swift in Sources */,
 				834BB7FC212249280072069F /* LoginController.swift in Sources */,
 				83F49489212CB0F0000FE0DF /* HomePostCell.swift in Sources */,
 				83520E182127566E00D815DE /* PhotoSelectorHeader.swift in Sources */,
