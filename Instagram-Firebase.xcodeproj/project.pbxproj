@@ -30,6 +30,8 @@
 		83E4CBD82139CED600D1AEA4 /* CustomAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CBD72139CED600D1AEA4 /* CustomAnimationPresenter.swift */; };
 		83E4CBDA2139D48700D1AEA4 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CBD92139D48700D1AEA4 /* CustomAnimationDismisser.swift */; };
 		83E4CBDC2139DA6B00D1AEA4 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CBDB2139DA6B00D1AEA4 /* CommentsController.swift */; };
+		83E4CBDE2139E9D100D1AEA4 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CBDD2139E9D100D1AEA4 /* CommentsCell.swift */; };
+		83E4CBE02139ED9600D1AEA4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E4CBDF2139ED9600D1AEA4 /* Comment.swift */; };
 		83F49480212A30C3000FE0DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4947F212A30C3000FE0DF /* Post.swift */; };
 		83F49482212A3315000FE0DF /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F49481212A3315000FE0DF /* UserProfilePhotoCell.swift */; };
 		83F49484212CA503000FE0DF /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F49483212CA503000FE0DF /* CustomImageView.swift */; };
@@ -66,6 +68,8 @@
 		83E4CBD72139CED600D1AEA4 /* CustomAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresenter.swift; sourceTree = "<group>"; };
 		83E4CBD92139D48700D1AEA4 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		83E4CBDB2139DA6B00D1AEA4 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		83E4CBDD2139E9D100D1AEA4 /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		83E4CBDF2139ED9600D1AEA4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		83F4947F212A30C3000FE0DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		83F49481212A3315000FE0DF /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		83F49483212CA503000FE0DF /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 			children = (
 				83F4947F212A30C3000FE0DF /* Post.swift */,
 				83F4948A212CCFCE000FE0DF /* User.swift */,
+				83E4CBDF2139ED9600D1AEA4 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				83F49486212CAFB5000FE0DF /* HomeController.swift */,
 				83F49488212CB0F0000FE0DF /* HomePostCell.swift */,
 				83E4CBDB2139DA6B00D1AEA4 /* CommentsController.swift */,
+				83E4CBDD2139E9D100D1AEA4 /* CommentsCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				83F4948B212CCFCE000FE0DF /* User.swift in Sources */,
 				834BB7F2211F93780072069F /* MainTabBarController.swift in Sources */,
 				834BB7F8211F9FB10072069F /* UserProfileHeader.swift in Sources */,
+				83E4CBDE2139E9D100D1AEA4 /* CommentsCell.swift in Sources */,
 				83E4CBDA2139D48700D1AEA4 /* CustomAnimationDismisser.swift in Sources */,
 				834BB7F4211F94AA0072069F /* UserProfileController.swift in Sources */,
 				834BB7D9211971B90072069F /* AppDelegate.swift in Sources */,
@@ -365,6 +372,7 @@
 				83520E182127566E00D815DE /* PhotoSelectorHeader.swift in Sources */,
 				83E4CBDC2139DA6B00D1AEA4 /* CommentsController.swift in Sources */,
 				83520E0C2124AD7E00D815DE /* PhotoSelectorController.swift in Sources */,
+				83E4CBE02139ED9600D1AEA4 /* Comment.swift in Sources */,
 				83F49487212CAFB5000FE0DF /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
