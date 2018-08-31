@@ -85,6 +85,7 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
+    //comment button and target to transition to comments view using protocol 
     lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
