@@ -115,8 +115,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 Database.database().reference().child("likes").child(key).child(uid).observe(.value, with: { (snapshot) in
                     
-                    print(snapshot)
-                    
                     if let value = snapshot.value as? Int,  value == 1 {
                         post.hasLIked = true
                     }
@@ -181,7 +179,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         guard let indexPath = collectionView?.indexPath(for: cell) else { return }
         
         var post = self.posts[indexPath.item]
-        print(post.caption)
+        
         
         guard let postId = post.id else { return }
         
